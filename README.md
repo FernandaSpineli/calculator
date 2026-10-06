@@ -10,6 +10,10 @@ go run .            # porta 8080 (ou defina PORT)
 go test ./...
 ```
 
+Depois abra <http://localhost:8080> para usar a interface web (HTML5 + CSS em `web/static`,
+embutida no binário). Ela tem teclado básico e científico, alternância DEG/RAD, atalhos de
+teclado (`0-9`, `+ - * / % ^`, `Enter`, `Backspace`, `Esc`) e o histórico salvo na API.
+
 ## Endpoints
 
 | Método | Rota                          | Descrição                              | Sucesso |
