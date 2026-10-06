@@ -10,6 +10,7 @@ import (
 
 	"github.com/FernandaSpineli/calculator/internal/calculator"
 	"github.com/FernandaSpineli/calculator/internal/store"
+	"github.com/FernandaSpineli/calculator/web"
 )
 
 const basePath = "/api/v1"
@@ -25,6 +26,9 @@ func NewRouter(s *store.Memory) *gin.Engine {
 
 	h := &handler{store: s}
 	r.GET("/health", func(c *gin.Context) { c.JSON(http.StatusOK, gin.H{"status": "ok"}) })
+
+	r.StaticFS("/static", http.FS(web.Static))
+	r.GET("/", func(c *gin.Context) { c.FileFromFS("/", http.FS(web.Static)) })
 
 	v1 := r.Group(basePath)
 	v1.GET("/operations", h.listOperations)

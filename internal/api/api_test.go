@@ -134,3 +134,17 @@ func TestInvalidID(t *testing.T) {
 		}
 	}
 }
+
+func TestFrontend(t *testing.T) {
+	r := NewRouter(store.NewMemory())
+	for path, want := range map[string]string{
+		"/":                 "<!doctype html>",
+		"/static/style.css": ":root",
+		"/static/app.js":    `const API = "/api/v1"`,
+	} {
+		w := do(t, r, http.MethodGet, path, "")
+		if w.Code != http.StatusOK || !strings.Contains(w.Body.String(), want) {
+			t.Errorf("GET %s: status %d, body %.80q", path, w.Code, w.Body)
+		}
+	}
+}
