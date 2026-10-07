@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calculadora científica</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <main class="layout">
+    <section class="calculator" aria-label="Calculadora">
+      <header class="calc-header">
+        <h1>Calculadora</h1>
+        <fieldset class="unit" aria-label="Unidade de ângulo">
+          <label><input type="radio" name="unit" value="deg" checked><span>DEG</span></label>
+          <label><input type="radio" name="unit" value="rad"><span>RAD</span></label>
+        </fieldset>
+      </header>
+
+      <output class="display" aria-live="polite">
+        <span class="expression" id="expression"></span>
+        <span class="value" id="value">0</span>
+        <span class="error" id="error" role="alert"></span>
+      </output>
+
+      <div class="keys scientific">
+        <button data-unary="sin">sin</button>
+        <button data-unary="cos">cos</button>
+        <button data-unary="tan">tan</button>
+        <button data-unary="sqrt">√x</button>
+        <button data-unary="cbrt">∛x</button>
+
+        <button data-unary="asin">sin⁻¹</button>
+        <button data-unary="acos">cos⁻¹</button>
+        <button data-unary="atan">tan⁻¹</button>
+        <button data-binary="power">xʸ</button>
+        <button data-binary="root">ʸ√x</button>
+
+        <button data-unary="sinh">sinh</button>
+        <button data-unary="cosh">cosh</button>
+        <button data-unary="tanh">tanh</button>
+        <button data-unary="exp">eˣ</button>
+        <button data-binary="log">logᵧx</button>
+
+        <button data-unary="ln">ln</button>
+        <button data-unary="log10">log₁₀</button>
+        <button data-unary="log2">log₂</button>
+        <button data-unary="factorial">n!</button>
+        <button data-unary="reciprocal">1/x</button>
+
+        <button data-const="pi">π</button>
+        <button data-const="e">e</button>
+        <button data-unary="abs">|x|</button>
+        <button data-binary="mod">mod</button>
+        <button data-action="negate">±</button>
+      </div>
+
+      <div class="keys basic">
+        <button class="fn" data-action="clear">C</button>
+        <button class="fn" data-action="backspace" aria-label="Apagar">⌫</button>
+        <button class="fn" data-action="clear-entry">CE</button>
+        <button class="op" data-binary="divide">÷</button>
+
+        <button data-digit="7">7</button>
+        <button data-digit="8">8</button>
+        <button data-digit="9">9</button>
+        <button class="op" data-binary="multiply">×</button>
+
+        <button data-digit="4">4</button>
+        <button data-digit="5">5</button>
+        <button data-digit="6">6</button>
+        <button class="op" data-binary="subtract">−</button>
+
+        <button data-digit="1">1</button>
+        <button data-digit="2">2</button>
+        <button data-digit="3">3</button>
+        <button class="op" data-binary="add">+</button>
+
+        <button class="wide" data-digit="0">0</button>
+        <button data-digit=".">,</button>
+        <button class="equals" data-action="equals">=</button>
+      </div>
+    </section>
+
+    <section class="history" aria-labelledby="history-title">
+      <header class="history-header">
+        <h2 id="history-title">Histórico</h2>
+        <button class="link" id="clear-history">Limpar</button>
+      </header>
+      <p class="empty" id="history-empty">Nenhum cálculo ainda.</p>
+      <ol id="history-list"></ol>
+    </section>
+  </main>
+
+  <template id="history-item">
+    <li>
+      <button class="history-use" title="Usar resultado">
+        <span class="history-expr"></span>
+        <span class="history-result"></span>
+      </button>
+      <button class="history-delete" aria-label="Remover">✕</button>
+    </li>
+  </template>
+</body>
+</html>
